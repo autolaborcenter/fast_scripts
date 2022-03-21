@@ -1,7 +1,18 @@
 #!/bin/bash
+
 echo "Deploy environment quickly for jetson nano (Jetpack 4.6.1)"
 
-echo "1.Change mirror source(Ubuntu 18.04) to USTC.edu.cn"
+
+echo "1.Initial workspace"
+# workspace : ${HOME}/fast_scripts/
+cd ${HOME}
+if [ ! -d "fast_scripts" ]; then
+  mkdir fast_scripts
+  cd fast_scripts
+fi
+
+
+echo "2.Change mirror source(Ubuntu 18.04) to USTC.edu.cn"
 
 mv /etc/apt/sources.list /etc/apt/sources.list.bak
 
@@ -21,8 +32,11 @@ deb https://mirrors.ustc.edu.cn/ubuntu-ports/ bionic-security main restricted un
 # deb-src https://mirrors.ustc.edu.cn/ubuntu-ports/ bionic-proposed main restricted universe multiverse
 EOF
 
-echo "2.Update your apt software list"
+echo "3.Update your apt software list"
 apt update
 
-echo "3.Install some software"
+echo "4.Install some software"
 apt install nano
+
+wget -O https://download.nomachine.com/download/7.8/Arm/nomachine_7.8.2_1_arm64.deb
+dpkg -i nomachine*.deb
