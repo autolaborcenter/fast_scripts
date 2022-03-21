@@ -38,5 +38,4 @@ apt update
 echo "4.Install some software"
 apt install nano
 
-wget - https://download.nomachine.com/download/7.8/Arm/nomachine_7.8.2_1_arm64.deb
-dpkg -i nomachine*.deb
+wget - https://download.nomachine.com/download/7.8/Arm/nomachine_7.8.2_1_arm64.deb && dpkg -i nomachine*.deb
