@@ -1,7 +1,7 @@
 #!/bin/bash
 echo "can test start"
 
-sudo ip link set can0 down
+sudo ifconfig can0 down
 sudo ip link set can0 type can bitrate 1000000 
 
 
@@ -10,12 +10,12 @@ do
 
 echo "********${i}********"
 
-echo "ip link set can0 up";
-sudo ip link set can0 up
+echo "ifconfig can0 up";
+sudo ifconfig can0 up
 sleep 1s
 
-echo "ip link set can0 down";    
-sudo ip link set can0 down
+echo "ifconfig can0 down";    
+sudo ifconfig can0 down
 sleep 1s
 
 done 
