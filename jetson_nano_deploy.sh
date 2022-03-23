@@ -39,3 +39,10 @@ echo "4.Install some software"
 apt install nano
 
 wget - https://download.nomachine.com/download/7.8/Arm/nomachine_7.8.2_1_arm64.deb && dpkg -i nomachine*.deb
+
+
+echo "5.Install ZSH"
+apt install zsh
+
+echo "6.Install oh-my-zsh"
+sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
