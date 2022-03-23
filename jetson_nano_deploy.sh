@@ -44,13 +44,18 @@ wget - https://download.nomachine.com/download/7.8/Arm/nomachine_7.8.2_1_arm64.d
 echo "5.Install ZSH"
 apt install zsh
 
-echo "6.Install oh-my-zsh"
+echo "6.Install oh-my-zsh and plugin"
 sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
 
-echo "7.Config zsh and oh-my-zsh"
-echo "plugins=(git zsh-autosuggestions zsh-syntax-highlighting z sudo)" >> .zshrc
+source .zshrc
 
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
+echo "7.Update .zshrc file"
+wget - https://raw.githubusercontent.com/autolaborcenter/fast_scripts/main/.zshrc
+mv ~/.zshrc ~/.zshrc_bkp
+cp .zshrc ~/.zshrc
 
 
 source .zshrc
