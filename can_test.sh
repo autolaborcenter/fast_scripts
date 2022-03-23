@@ -19,3 +19,7 @@ sudo ifconfig can0 down
 sleep 1s
 
 done 
+
+sudo ip link set can0 type can bitrate 1000000 loopback on
+candump can0
+cansend can0 123#99.95.42.07.2B.96.66.6E
