@@ -57,5 +57,11 @@ wget - https://raw.githubusercontent.com/autolaborcenter/fast_scripts/main/.zshr
 mv ~/.zshrc ~/.zshrc_bkp
 cp .zshrc ~/.zshrc
 
-
 source .zshrc
+
+echo "8.Update dtb for CAN"
+cp jetson-mcp251x.dtbo /boot
+/opt/nvidia/jetson-io/config-by-hardware.py -n "MCP251x CAN Controller"
+echo "Restart after 10 seconds."
+sleep 10s
+reboot
