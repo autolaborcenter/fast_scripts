@@ -4,11 +4,11 @@ echo "Deploy environment quickly for jetson nano (Jetpack 4.6.1)"
 
 
 echo "1.Initial workspace"
-# workspace : ${HOME}/fast_scripts/
+# workspace : ${HOME}/fs_ws/
 cd ${HOME}
-if [ ! -d "fast_scripts" ]; then
-  mkdir fast_scripts
-  cd fast_scripts
+if [ ! -d "fs_ws" ]; then
+  mkdir fs_ws
+  cd fs_ws
 fi
 
 
