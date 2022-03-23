@@ -46,3 +46,11 @@ apt install zsh
 
 echo "6.Install oh-my-zsh"
 sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
+
+echo "7.Config zsh and oh-my-zsh"
+echo "plugins=(git zsh-autosuggestions zsh-syntax-highlighting z sudo)" >> .zshrc
+
+
+
+
+source .zshrc
