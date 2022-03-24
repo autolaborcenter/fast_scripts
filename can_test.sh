@@ -1,8 +1,11 @@
 #!/bin/bash
 echo "can test start"
 
+CANBAUD = 250000
+
+echo "set can bitrate ${CANBAUD}"
 sudo ifconfig can0 down
-sudo ip link set can0 type can bitrate 1000000 
+sudo ip link set can0 type can bitrate  CANBAUD 
 
 
 for((i=1;i<=1000;i++));  
