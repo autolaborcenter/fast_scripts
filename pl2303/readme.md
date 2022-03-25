@@ -30,3 +30,17 @@
   * 找出与jetson nano系统内核对应的pl2303驱动源码（一般在压缩包内的文件夹名字形如`X.X_ok`），并将.c 和 .h 文件拷贝到（源码目录）`kernel/kernel-4.9/drivers/usb/serial/`(将原有的pl2303.c和pl2303.h文件替换)
   * 进入源码目录，执行 `./nvbuild.sh`
   * 将生成的内核镜像烧录到jetson nano中
+
+
+## 备注
+* 优越者官方文档：
+
+Since the Linux Association is still reviewing the new PL2303G Linux driver, 
+Please update the PL2303G Linux driver in the following way.
+
+1. Please find the nearest Linux kernel version first.
+2. make all // make a new driver.
+3. sudo rmmod pl2303.ko // remove driver
+4. sudo insmod pl2303.ko // add_1 a new driver
+5. sudo cp pl2303.ko /lib/modules/$(uname r)/kernel/drivers/usb/serial // add_2 a new driver
+
