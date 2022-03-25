@@ -36,7 +36,7 @@ echo "3.Update your apt software list"
 apt update
 
 echo "4.Install some software"
-apt install nano
+apt install nano nload htop
 
 wget - https://download.nomachine.com/download/7.8/Arm/nomachine_7.8.2_1_arm64.deb && dpkg -i nomachine*.deb
 
