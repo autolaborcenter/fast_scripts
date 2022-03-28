@@ -9,13 +9,13 @@ if [ ! -d "fs_ws" ]; then
 fi
 
 
-
+TERMINAL=/dev/tty
 HEIGHT=15
-WIDTH=40
+WIDTH=60
 CHOICE_HEIGHT=4
-BACKTITLE="Backtitle here"
-TITLE="Title here"
-MENU="Choose one of the following options:"
+BACKTITLE="Fast scripts for Jetson Nano"
+TITLE="Fast scripts for Jetson Nano"
+MENU="Choose one operation of the following options:"
 
 OPTIONS=(1 "Change source" 
          2 "Update PL2303" 
@@ -25,13 +25,13 @@ OPTIONS=(1 "Change source"
          6 "Install utils" 
          7 "Install Nomachine")
 
-CHOICE=$(dialog --clear \
+CHOICE=$(whiptail --clear \
                 --backtitle "$BACKTITLE" \
                 --title "$TITLE" \
                 --menu "$MENU" \
                 $HEIGHT $WIDTH $CHOICE_HEIGHT \
                 "${OPTIONS[@]}" \
-                2>&1 >/dev/tty)
+                6>&1 >$TERMINAL)
 
 clear
 case $CHOICE in
@@ -57,7 +57,6 @@ case $CHOICE in
             install_nomachine
             ;;
 esac
-
 
 
 function change_source {
