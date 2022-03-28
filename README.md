@@ -3,10 +3,10 @@ Some scripts for deploy ,install ,development
 
 ## 使用方法
 
-[Jetson nano deploy](jetson_nano_deploy.sh):
+[Jetson nano ](jetson_nano.sh): 拷贝并执行
 
 ```
-sudo sh -c "$(wget https://raw.githubusercontent.com/autolaborcenter/fast_scripts/main/jetson_nano_deploy.sh -O -)"
+sudo sh -c "$(wget https://raw.githubusercontent.com/autolaborcenter/fast_scripts/main/jetson_nano.sh -O -)"
 ```
 
 ## 简介
