@@ -49,7 +49,8 @@
 				nvidia,rx-clk-tap-delay = <0x7>;
 				clocks = <&can_clock>;
 				interrupt-parent = <&gpio>;
-				interrupts = <TEGRA_GPIO(Z, 0) 0x1>;
+				//interrupts = <TEGRA_GPIO(Z, 0) 0x1>;
+				interrupts = <TEGRA_GPIO(CC, 4) 0x1>; //Motion_base, named vbus_en_0
 				controller-data {
 					nvidia,cs-setup-clk-count = <0x1e>;
 					nvidia,cs-hold-clk-count = <0x1e>;
