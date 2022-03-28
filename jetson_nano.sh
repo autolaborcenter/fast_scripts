@@ -12,7 +12,7 @@ fi
 TERMINAL=/dev/tty
 HEIGHT=15
 WIDTH=60
-CHOICE_HEIGHT=4
+CHOICE_HEIGHT=7
 BACKTITLE="Fast scripts for Jetson Nano"
 TITLE="Fast scripts for Jetson Nano"
 MENU="Choose one operation of the following options:"
@@ -32,30 +32,37 @@ CHOICE=$(whiptail --clear \
                 --menu "$MENU" \
                 $HEIGHT $WIDTH $CHOICE_HEIGHT \
                 "${OPTIONS[@]}" \
-                6>&1 >$TERMINAL)
+                3>&1 1>&2 2>&3 >$TERMINAL)
 
 clear
 case $CHOICE in
         1)
             change_source
+            break
             ;;
         2)
             update_pl2303
+            break
             ;;
         3)
             enable_mcp251x
+            break
             ;;
         4)
             test_socket_can
+            break
             ;;
         5)
             install_zsh
+            break
             ;;
         6)
             install_utils
+            break
             ;;
         7)
             install_nomachine
+            break
             ;;
 esac
 
@@ -92,7 +99,28 @@ function enable_mcp251x {
 function test_socket_can {
   echo "Test socket CAN "
 
-  sh -c "$(wget https://raw.githubusercontent.com/autolaborcenter/fast_scripts/main/test_socket_can.sh -O -)"
+  echo "set CAN bitrate 250000"
+  sudo ifconfig can0 down
+  sudo ip link set can0 type can bitrate  250000
+
+  for((i=1;i<=1000;i++));
+  do
+
+    echo "********${i}********"
+
+    echo "ifconfig can0 up";
+    sudo ifconfig can0 up
+    sleep 1s
+
+    echo "cansend can0 123##FF "
+    cansend can0 123##FF
+    sleep 1s
+
+    echo "ifconfig can0 down";
+    sudo ifconfig can0 down
+    sleep 1s
+
+  done
 }
 
 function install_zsh {

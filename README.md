@@ -25,7 +25,7 @@ sudo sh -c "$(wget https://raw.githubusercontent.com/autolaborcenter/fast_script
 
 * [source.list](sources.list)
     *  国内镜像源列表，Ubuntu port 18.04
-    *  
+
 * [test_socket_can.sh](test_socket_can.sh)
     *  Linux socketCAN设备测试脚本
 
