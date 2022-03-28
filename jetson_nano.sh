@@ -97,9 +97,9 @@ fi
 cd fs_ws
 
 TERMINAL=/dev/tty
-HEIGHT=15
+HEIGHT=20
 WIDTH=60
-CHOICE_HEIGHT=7
+CHOICE_HEIGHT=8
 BACKTITLE="Fast scripts for Jetson Nano"
 TITLE="Fast scripts for Jetson Nano"
 MENU="Choose one operation of the following options:"
