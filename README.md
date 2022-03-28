@@ -16,10 +16,10 @@ sudo sh -c "$(wget https://raw.githubusercontent.com/autolaborcenter/fast_script
 ```
 
 
-## 驱动
+
 
 * [pl2303](pl2303)
     *  优越者RS232-USB线的驱动程序
 
 * [mcp251x](mcp251x):
-    * 一款SPI-CAN控制器的驱动程序
+    * 适配jetson nano的设备树源码（dts）及设备树覆盖结果程序（dtbo）
