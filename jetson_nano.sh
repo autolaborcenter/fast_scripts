@@ -1,6 +1,7 @@
-#!/bin/bash
+#!/bin/sh
 
-function change_source {
+
+ change_source (){
     echo "Change mirror source(Ubuntu 18.04) to USTC.edu.cn"
     wget - https://raw.githubusercontent.com/autolaborcenter/fast_scripts/main/sources.list && \
     mv /etc/apt/sources.list /etc/apt/sources.list.bak
@@ -8,7 +9,7 @@ function change_source {
     apt update;
 }
 
-function update_pl2303 {
+ update_pl2303 (){
     echo "Update UNITEK's PL2303 driver"
     wget - https://raw.githubusercontent.com/autolaborcenter/fast_scripts/main/pl2303/pl2303.ko && \
     rmmod /lib/modules/4.9.253-tegra/kernel/drivers/usb/serial
@@ -16,7 +17,7 @@ function update_pl2303 {
     insmod /lib/modules/4.9.253-tegra/kernel/drivers/usb/serial
 }
 
-function enable_mcp251x {
+ enable_mcp251x (){
     echo "Enable dtbo file for MCP251x CAN controller"
     wget - https://raw.githubusercontent.com/autolaborcenter/fast_scripts/main/mcp251x/jetson-mcp251x.dtbo && \
     cp jetson-mcp251x.dtbo /boot;
@@ -26,7 +27,7 @@ function enable_mcp251x {
 
 }
 
-function test_socket_can {
+ test_socket_can (){
     echo "Test socket CAN "
     echo "set CAN bitrate 250000"
     sudo ifconfig can0 down
@@ -47,7 +48,7 @@ function test_socket_can {
     done
 }
 
-function install_zsh {
+ install_zsh (){
     echo "Install zsh & omz & config "
 
     apt install zsh
@@ -63,13 +64,13 @@ function install_zsh {
     source .zshrc
 }
 
-function install_utils {
+ install_utils (){
     echo "Install utils"
 
     apt install nano nload htop
 }
 
-function install_nomachine {
+ install_nomachine (){
     echo "Install Nomachine"
 
     wget - https://download.nomachine.com/download/7.8/Arm/nomachine_7.8.2_1_arm64.deb && \
