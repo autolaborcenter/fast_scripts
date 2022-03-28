@@ -33,18 +33,19 @@
     sudo ifconfig can0 down
     sudo ip link set can0 type can bitrate  250000
 
-    for((i=1;i<=5;i++));
-    do
-      echo "********${i}********"
-      echo "ifconfig can0 up";
-      sudo ifconfig can0 up
-      sleep 1s
-      echo "cansend can0 123#DEADBEEF"
-      cansend can0 123#DEADBEEF
-      sleep 1s
-      echo "ifconfig can0 down";
-      sudo ifconfig can0 down
-      sleep 1s
+    i=0; 
+    while [ $i -le 5 ]; 
+    do echo $i; 
+        echo "********${i}********"
+        echo "ifconfig can0 up";
+        sudo ifconfig can0 up
+        sleep 1s
+        echo "cansend can0 123#DEADBEEF"
+        cansend can0 123#DEADBEEF
+        sleep 1s
+        echo "ifconfig can0 down";
+        sudo ifconfig can0 down
+        sleep 1s
     done
 }
 
