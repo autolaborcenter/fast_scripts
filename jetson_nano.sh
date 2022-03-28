@@ -46,6 +46,7 @@
         echo "ifconfig can0 down";
         sudo ifconfig can0 down
         sleep 1s
+        i=$((i+1)); 
     done
 }
 
