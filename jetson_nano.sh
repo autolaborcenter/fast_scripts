@@ -9,6 +9,39 @@ if [ ! -d "fs_ws" ]; then
 fi
 
 
+PS3="Enter an option: "
+select option in  "Change source"\
+                  "Update PL2303"
+                  "Enable MCP251x"\
+                  "Test socket CAN"\
+                  "Install zsh"
+                  "Install utils" \
+                  "Install Nomachine" \
+do
+	case $option in
+	"Change source")
+		change_source ;;
+	"Update PL2303")
+		update_pl2303 ;;
+	"Enable MCP251x")
+		enable_mcp251x ;;
+	"Test socket CAN")
+		test_socket_can ;;
+	"Install zsh")
+		install_zsh ;;
+	"Install utils")
+		install_utils ;;
+	"Install Nomachine")
+		install_nomachine ;;
+	*)
+		clear
+		echo "Sorry, wrong selection";;
+	esac
+done
+clear
+
+
+
 function change_source {
   echo "Change mirror source(Ubuntu 18.04) to USTC.edu.cn"
 
@@ -70,35 +103,5 @@ function install_nomachine {
   dpkg -i nomachine*.deb;
 }
 
-PS3="Enter an option: "
-select option in  "Change source"\
-                  "Update PL2303"
-                  "Enable MCP251x"\
-                  "Test socket CAN"\
-                  "Install zsh"
-                  "Install utils" \
-                  "Install Nomachine" \
-do
-	case $option in
-	"Change source")
-		change_source ;;
-	"Update PL2303")
-		update_pl2303 ;;
-	"Enable MCP251x")
-		enable_mcp251x ;;
-	"Test socket CAN")
-		test_socket_can ;;
-	"Install zsh")
-		install_zsh ;;
-	"Install utils")
-		install_utils ;;
-	"Install Nomachine")
-		install_nomachine ;;
-	*)
-		clear
-		echo "Sorry, wrong selection";;
-	esac
-done
-clear
 
  
