@@ -6,7 +6,7 @@ Some scripts for deploy ,install ,development
 [Jetson nano ](jetson_nano.sh): 拷贝并执行
 
 ```
-sudo sh -c "$(wget https://raw.githubusercontent.com/autolaborcenter/fast_scripts/main/jetson_nano.sh -O -)"
+sudo bash -c "$(wget https://raw.githubusercontent.com/autolaborcenter/fast_scripts/main/jetson_nano.sh -O -)"
 ```
 
 ## 目录
