@@ -124,31 +124,24 @@ clear
 case $CHOICE in
         1)
             change_source
-            break
             ;;
         2)
             update_pl2303
-            break
             ;;
         3)
             enable_mcp251x
-            break
             ;;
         4)
             test_socket_can
-            break
             ;;
         5)
             install_zsh
-            break
             ;;
         6)
             install_utils
-            break
             ;;
         7)
             install_nomachine
-            break
             ;;
 esac
 
