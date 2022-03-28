@@ -17,7 +17,7 @@ BACKTITLE="Fast scripts for Jetson Nano"
 TITLE="Fast scripts for Jetson Nano"
 MENU="Choose one operation of the following options:"
 
-OPTIONS=(1 "Change source" 
+OPTIONS=$(1 "Change source" 
          2 "Update PL2303" 
          3 "Enable MCP251x" 
          4 "Test socket CAN" 
