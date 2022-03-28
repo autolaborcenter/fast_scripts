@@ -88,11 +88,11 @@ do
 		enable_mcp251x ;;
 	"Test socket CAN")
 		test_socket_can ;;
-	"Install zsh"）
+	"Install zsh")
 		install_zsh ;;
-	"Install utils"）
+	"Install utils")
 		install_utils ;;
-	"Install Nomachine"）
+	"Install Nomachine")
 		install_nomachine ;;
 	*)
 		clear
