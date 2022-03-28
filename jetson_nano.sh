@@ -1,85 +1,79 @@
 #!/bin/bash
 
 function change_source {
-  echo "Change mirror source(Ubuntu 18.04) to USTC.edu.cn"
-
-  wget - https://raw.githubusercontent.com/autolaborcenter/fast_scripts/main/sources.list && \
-  mv /etc/apt/sources.list /etc/apt/sources.list.bak
-  mv sources.list /etc/apt/sources.list;
-  apt update;
+    echo "Change mirror source(Ubuntu 18.04) to USTC.edu.cn"
+    wget - https://raw.githubusercontent.com/autolaborcenter/fast_scripts/main/sources.list && \
+    mv /etc/apt/sources.list /etc/apt/sources.list.bak
+    mv sources.list /etc/apt/sources.list;
+    apt update;
 }
 
 function update_pl2303 {
-  echo "Update UNITEK's PL2303 driver"
-
-  wget - https://raw.githubusercontent.com/autolaborcenter/fast_scripts/main/pl2303/pl2303.ko && \
-  rmmod /lib/modules/4.9.253-tegra/kernel/drivers/usb/serial
-  cp pl2303.ko /lib/modules/4.9.253-tegra/kernel/drivers/usb/serial/
-  insmod /lib/modules/4.9.253-tegra/kernel/drivers/usb/serial
+    echo "Update UNITEK's PL2303 driver"
+    wget - https://raw.githubusercontent.com/autolaborcenter/fast_scripts/main/pl2303/pl2303.ko && \
+    rmmod /lib/modules/4.9.253-tegra/kernel/drivers/usb/serial
+    cp pl2303.ko /lib/modules/4.9.253-tegra/kernel/drivers/usb/serial/
+    insmod /lib/modules/4.9.253-tegra/kernel/drivers/usb/serial
 }
 
 function enable_mcp251x {
-  echo "Enable dtbo file for MCP251x CAN controller"
-
-  wget - https://raw.githubusercontent.com/autolaborcenter/fast_scripts/main/mcp251x/jetson-mcp251x.dtbo && \
-  cp jetson-mcp251x.dtbo /boot;
-  mv tegra210-p3448-0000-p3449-0000-a02-mcp251x.dtbo /boot/tegra210-p3448-0000-p3449-0000-a02-mcp251x.dtbo.bak
-  mv tegra210-p3448-0000-p3449-0000-a01-mcp251x.dtbo /boot/tegra210-p3448-0000-p3449-0000-a01-mcp251x.dtbo.bak
-  /opt/nvidia/jetson-io/config-by-hardware.py -n "MCP251x CAN Controller"
+    echo "Enable dtbo file for MCP251x CAN controller"
+    wget - https://raw.githubusercontent.com/autolaborcenter/fast_scripts/main/mcp251x/jetson-mcp251x.dtbo && \
+    cp jetson-mcp251x.dtbo /boot;
+    mv tegra210-p3448-0000-p3449-0000-a02-mcp251x.dtbo /boot/tegra210-p3448-0000-p3449-0000-a02-mcp251x.dtbo.bak
+    mv tegra210-p3448-0000-p3449-0000-a01-mcp251x.dtbo /boot/tegra210-p3448-0000-p3449-0000-a01-mcp251x.dtbo.bak
+    /opt/nvidia/jetson-io/config-by-hardware.py -n "MCP251x CAN Controller"
 
 }
 
 function test_socket_can {
-  echo "Test socket CAN "
-
-  echo "set CAN bitrate 250000"
-  sudo ifconfig can0 down
-  sudo ip link set can0 type can bitrate  250000
-
-  for((i=1;i<=1000;i++));
-  do
-
-    echo "********${i}********"
-    echo "ifconfig can0 up";
-    sudo ifconfig can0 up
-    sleep 1s
-    echo "cansend can0 123#DEADBEEF"
-    cansend can0 123#DEADBEEF
-    sleep 1s
-    echo "ifconfig can0 down";
+    echo "Test socket CAN "
+    echo "set CAN bitrate 250000"
     sudo ifconfig can0 down
-    sleep 1s
+    sudo ip link set can0 type can bitrate  250000
 
-  done
+    for((i=1;i<=5;i++));
+    do
+      echo "********${i}********"
+      echo "ifconfig can0 up";
+      sudo ifconfig can0 up
+      sleep 1s
+      echo "cansend can0 123#DEADBEEF"
+      cansend can0 123#DEADBEEF
+      sleep 1s
+      echo "ifconfig can0 down";
+      sudo ifconfig can0 down
+      sleep 1s
+    done
 }
 
 function install_zsh {
-  echo "Install zsh & omz & config "
+    echo "Install zsh & omz & config "
 
-  apt install zsh
+    apt install zsh
 
-  sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
+    sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
 
-  git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+    git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
-  mv ~/.zshrc ~/.zshrc_bkp
-  wget - https://raw.githubusercontent.com/autolaborcenter/fast_scripts/main/.zshrc &&\
-  cp .zshrc ~/.zshrc;
-  source .zshrc
+    mv ~/.zshrc ~/.zshrc_bkp
+    wget - https://raw.githubusercontent.com/autolaborcenter/fast_scripts/main/.zshrc &&\
+    cp .zshrc ~/.zshrc;
+    source .zshrc
 }
 
 function install_utils {
-  echo "Install utils"
+    echo "Install utils"
 
-  apt install nano nload htop
+    apt install nano nload htop
 }
 
 function install_nomachine {
-  echo "Install Nomachine"
+    echo "Install Nomachine"
 
-  wget - https://download.nomachine.com/download/7.8/Arm/nomachine_7.8.2_1_arm64.deb && \
-  dpkg -i nomachine*.deb;
+    wget - https://download.nomachine.com/download/7.8/Arm/nomachine_7.8.2_1_arm64.deb && \
+    dpkg -i nomachine*.deb;
 }
 
 ##################################################
