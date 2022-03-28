@@ -17,8 +17,13 @@ BACKTITLE="Backtitle here"
 TITLE="Title here"
 MENU="Choose one of the following options:"
 
-
-OPTIONS=(1 "Change source"          2 "Update PL2303"          3 "Enable MCP251x"          4 "Test socket CAN"          5 "Install zsh"          6 "Install utils"          7 "Install Nomachine")
+OPTIONS=(1 "Change source" 
+         2 "Update PL2303" 
+         3 "Enable MCP251x" 
+         4 "Test socket CAN" 
+         5 "Install zsh" 
+         6 "Install utils" 
+         7 "Install Nomachine")
 
 CHOICE=$(dialog --clear \
                 --backtitle "$BACKTITLE" \
@@ -63,7 +68,8 @@ function change_source {
   mv sources.list /etc/apt/sources.list;
   apt update;
 }
-function update_pl2303{
+
+function update_pl2303 {
   echo "Update UNITEK's PL2303 driver"
 
   wget - https://raw.githubusercontent.com/autolaborcenter/fast_scripts/main/pl2303/pl2303.ko && \
@@ -71,6 +77,7 @@ function update_pl2303{
   cp pl2303.ko /lib/modules/4.9.253-tegra/kernel/drivers/usb/serial/
   insmod /lib/modules/4.9.253-tegra/kernel/drivers/usb/serial
 }
+
 function enable_mcp251x {
   echo "Enable dtbo file for MCP251x CAN controller"
 
@@ -82,7 +89,7 @@ function enable_mcp251x {
 
 }
 
-function test_socket_can{
+function test_socket_can {
   echo "Test socket CAN "
 
   sh -c "$(wget https://raw.githubusercontent.com/autolaborcenter/fast_scripts/main/test_socket_can.sh -O -)"
@@ -109,6 +116,7 @@ function install_utils {
 
   apt install nano nload htop
 }
+
 function install_nomachine {
   echo "Install Nomachine"
 
