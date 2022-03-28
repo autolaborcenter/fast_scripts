@@ -1,72 +1,5 @@
 #!/bin/bash
 
-echo "Initial workspace: ${HOME}/fs_ws/"
-# workspace : ${HOME}/fs_ws/
-cd ${HOME}
-if [ ! -d "fs_ws" ]; then
-  mkdir fs_ws
-  cd fs_ws
-fi
-
-
-TERMINAL=/dev/tty
-HEIGHT=15
-WIDTH=60
-CHOICE_HEIGHT=7
-BACKTITLE="Fast scripts for Jetson Nano"
-TITLE="Fast scripts for Jetson Nano"
-MENU="Choose one operation of the following options:"
-
-
-OPTIONS=(1 "Change source" 
-         2 "Update PL2303" 
-         3 "Enable MCP251x" 
-         4 "Test socket CAN" 
-         5 "Install zsh" 
-         6 "Install utils" 
-         7 "Install Nomachine")
-
-CHOICE=$(whiptail --clear \
-                --backtitle "$BACKTITLE" \
-                --title "$TITLE" \
-                --menu "$MENU" \
-                $HEIGHT $WIDTH $CHOICE_HEIGHT \
-                "${OPTIONS[@]}" \
-                3>&1 1>&2 2>&3 >$TERMINAL)
-
-clear
-case $CHOICE in
-        1)
-            change_source
-            break
-            ;;
-        2)
-            update_pl2303
-            break
-            ;;
-        3)
-            enable_mcp251x
-            break
-            ;;
-        4)
-            test_socket_can
-            break
-            ;;
-        5)
-            install_zsh
-            break
-            ;;
-        6)
-            install_utils
-            break
-            ;;
-        7)
-            install_nomachine
-            break
-            ;;
-esac
-
-
 function change_source {
   echo "Change mirror source(Ubuntu 18.04) to USTC.edu.cn"
 
@@ -130,8 +63,8 @@ function install_zsh {
 
   sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
 
-  git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions 
-  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting 
+  git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
   mv ~/.zshrc ~/.zshrc_bkp
   wget - https://raw.githubusercontent.com/autolaborcenter/fast_scripts/main/.zshrc &&\
@@ -151,6 +84,74 @@ function install_nomachine {
   wget - https://download.nomachine.com/download/7.8/Arm/nomachine_7.8.2_1_arm64.deb && \
   dpkg -i nomachine*.deb;
 }
+
+##################################################
+
+echo "Initial workspace: ${HOME}/fs_ws/"
+# workspace : ${HOME}/fs_ws/
+cd ${HOME}
+if [ ! -d "fs_ws" ]; then
+  mkdir fs_ws
+  cd fs_ws
+fi
+
+TERMINAL=/dev/tty
+HEIGHT=15
+WIDTH=60
+CHOICE_HEIGHT=7
+BACKTITLE="Fast scripts for Jetson Nano"
+TITLE="Fast scripts for Jetson Nano"
+MENU="Choose one operation of the following options:"
+
+
+OPTIONS=(1 "Change source" 
+         2 "Update PL2303" 
+         3 "Enable MCP251x" 
+         4 "Test socket CAN" 
+         5 "Install zsh" 
+         6 "Install utils" 
+         7 "Install Nomachine")
+
+CHOICE=$(whiptail --clear \
+                --backtitle "$BACKTITLE" \
+                --title "$TITLE" \
+                --menu "$MENU" \
+                $HEIGHT $WIDTH $CHOICE_HEIGHT \
+                "${OPTIONS[@]}" \
+                3>&1 1>&2 2>&3 >$TERMINAL)
+
+clear
+case $CHOICE in
+        1)
+            change_source
+            break
+            ;;
+        2)
+            update_pl2303
+            break
+            ;;
+        3)
+            enable_mcp251x
+            break
+            ;;
+        4)
+            test_socket_can
+            break
+            ;;
+        5)
+            install_zsh
+            break
+            ;;
+        6)
+            install_utils
+            break
+            ;;
+        7)
+            install_nomachine
+            break
+            ;;
+esac
+
 
 
  
