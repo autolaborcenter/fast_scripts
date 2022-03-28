@@ -40,15 +40,12 @@ function test_socket_can {
   do
 
     echo "********${i}********"
-
     echo "ifconfig can0 up";
     sudo ifconfig can0 up
     sleep 1s
-
-    echo "cansend can0 123##FF "
-    cansend can0 123##FF
+    echo "cansend can0 123#DEADBEEF"
+    cansend can0 123#DEADBEEF
     sleep 1s
-
     echo "ifconfig can0 down";
     sudo ifconfig can0 down
     sleep 1s
