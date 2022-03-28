@@ -17,21 +17,14 @@ BACKTITLE="Fast scripts for Jetson Nano"
 TITLE="Fast scripts for Jetson Nano"
 MENU="Choose one operation of the following options:"
 
-OPTIONS[0] = "Change source" 
-OPTIONS[1] = "Update PL2303" 
-OPTIONS[2] = "Enable MCP251x"
-OPTIONS[3] = "Test socket CAN" 
-OPTIONS[4] = "Install zsh" 
-OPTIONS[5] = "Install utils" 
-OPTIONS[6] = "Install Nomachine" 
 
-# OPTIONS=(1 "Change source" 
-#          2 "Update PL2303" 
-#          3 "Enable MCP251x" 
-#          4 "Test socket CAN" 
-#          5 "Install zsh" 
-#          6 "Install utils" 
-#          7 "Install Nomachine")
+OPTIONS=(1 "Change source" 
+         2 "Update PL2303" 
+         3 "Enable MCP251x" 
+         4 "Test socket CAN" 
+         5 "Install zsh" 
+         6 "Install utils" 
+         7 "Install Nomachine")
 
 CHOICE=$(whiptail --clear \
                 --backtitle "$BACKTITLE" \
