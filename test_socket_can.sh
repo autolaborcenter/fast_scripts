@@ -1,9 +1,9 @@
 #!/bin/bash
-echo "can test start"
+echo "socket CAN test start"
 
 CANBAUD = 250000
 
-echo "set can bitrate ${CANBAUD}"
+echo "set CAN bitrate ${CANBAUD}"
 sudo ifconfig can0 down
 sudo ip link set can0 type can bitrate  CANBAUD 
 
