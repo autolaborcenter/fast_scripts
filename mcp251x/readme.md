@@ -1,7 +1,15 @@
 ## 简介
-MCP251X的linux驱动源码
 
-* `mcp2515.c` 拷贝自论坛https://forums.developer.nvidia.com/t/unofficial-guide-to-using-the-mcp2515-can-module-on-the-jetson-nano-2gb/208818
-* `mcp2515.h` 来自kernel4.9内核源码
+* jetson-mcp251x.dts 设备树源码
+* jetson-mcp251x.dtbo 设备树overlay程序，16M晶振，Jetpack4.6.1编译通过
 
-进入目录后，执行`make`命令编译即可，生成的mcp251c.ko文件即目标程序
+## 使用方法
+
+* 将jetson nano的/boot目录下的/boot/tegra210-p3448-0000-p3449-0000-a01-mcp251x.dtbo and /boot/tegra210-p3448-0000-p3449-0000-a02-mcp251x.dtbo 文件删除（或改名）
+* 将jetson-mcp251x.dtbo拷贝至/boot/
+* 运行`sudo /opt/nvidia/jetson-io/config-by-hardware.py -n "MCP251x CAN Controller"` 将dtbo文件覆盖安装到设备
+* 重启后生效
+
+## 诊断方法
+
+* 如果重启后没生效，使用`dmesg | grep mcp`，查看系统初始化时的日志
