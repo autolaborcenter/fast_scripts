@@ -18,13 +18,7 @@ TITLE="Title here"
 MENU="Choose one of the following options:"
 
 
-OPTIONS=(1 "Change source" \
-         2 "Update PL2303" \
-         3 "Enable MCP251x" \
-         4 "Test socket CAN" \
-         5 "Install zsh" \
-         6 "Install utils" \
-         7 "Install Nomachine")
+OPTIONS=(1 "Change source"          2 "Update PL2303"          3 "Enable MCP251x"          4 "Test socket CAN"          5 "Install zsh"          6 "Install utils"          7 "Install Nomachine")
 
 CHOICE=$(dialog --clear \
                 --backtitle "$BACKTITLE" \
