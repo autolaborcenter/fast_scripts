@@ -2,6 +2,7 @@
 
 * jetson-mcp251x.dts 设备树源码
 * jetson-mcp251x.dtbo 设备树overlay程序，16M晶振，Jetpack4.6.1编译通过
+* 注意检查MCP251X的interrupt脚对应som的引脚
 
 ## 使用方法
 
