@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 echo "Initial workspace: ${HOME}/fs_ws/"
 # workspace : ${HOME}/fs_ws/
@@ -9,36 +9,55 @@ if [ ! -d "fs_ws" ]; then
 fi
 
 
-PS3="Enter an option: "
-select option in  "Change source"\
-                  "Update PL2303"
-                  "Enable MCP251x"\
-                  "Test socket CAN"\
-                  "Install zsh"
-                  "Install utils" \
-                  "Install Nomachine" \
-do
-	case $option in
-	"Change source")
-		change_source ;;
-	"Update PL2303")
-		update_pl2303 ;;
-	"Enable MCP251x")
-		enable_mcp251x ;;
-	"Test socket CAN")
-		test_socket_can ;;
-	"Install zsh")
-		install_zsh ;;
-	"Install utils")
-		install_utils ;;
-	"Install Nomachine")
-		install_nomachine ;;
-	*)
-		clear
-		echo "Sorry, wrong selection";;
-	esac
-done
+
+HEIGHT=15
+WIDTH=40
+CHOICE_HEIGHT=4
+BACKTITLE="Backtitle here"
+TITLE="Title here"
+MENU="Choose one of the following options:"
+
+
+OPTIONS=(1 "Change source"
+         2 "Update PL2303"
+         3 "Enable MCP251x"
+         4 "Test socket CAN"
+         5 "Install zsh"
+         6 "Install utils"
+         7 "Install Nomachine")
+
+CHOICE=$(dialog --clear \
+                --backtitle "$BACKTITLE" \
+                --title "$TITLE" \
+                --menu "$MENU" \
+                $HEIGHT $WIDTH $CHOICE_HEIGHT \
+                "${OPTIONS[@]}" \
+                2>&1 >/dev/tty)
+
 clear
+case $CHOICE in
+        1)
+            change_source
+            ;;
+        2)
+            update_pl2303
+            ;;
+        3)
+            enable_mcp251x
+            ;;
+        4)
+            test_socket_can
+            ;;
+        5)
+            install_zsh
+            ;;
+        6)
+            install_utils
+            ;;
+        7)
+            install_nomachine
+            ;;
+esac
 
 
 
