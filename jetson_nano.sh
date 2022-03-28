@@ -143,6 +143,8 @@ case $CHOICE in
         7)
             install_nomachine
             ;;
+        *)
+            echo "error"
 esac
 
 
